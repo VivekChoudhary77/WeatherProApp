@@ -1,4 +1,4 @@
-# WeatherPro - Weather Application with CRUD Operations
+# WeatherPro - Weather Application
 
 > Tech Assessment 2: AI/ML Engineer Intern Application
 
