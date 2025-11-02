@@ -1,0 +1,124 @@
+# ============================================
+# ROOT LEVEL - General
+# ============================================
+.DS_Store
+*.log
+*.swp
+*~
+
+# IDE
+.vscode/
+.idea/
+*.iml
+*.sublime-*
+*.iws
+*.ipr
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# Environment files (NEVER commit API keys and credentials!)
+.env
+.env.local
+.env.production
+.env.*.local
+
+# ============================================
+# BACKEND - Spring Boot / Maven
+# ============================================
+# Build output
+weatherpro-backend/target/
+weatherpro-backend/build/
+!weatherpro-backend/**/src/main/**/target/
+!weatherpro-backend/**/src/test/**/target/
+!weatherpro-backend/**/src/main/**/build/
+!weatherpro-backend/**/src/test/**/build/
+
+# Maven
+weatherpro-backend/.mvn/wrapper/maven-wrapper.jar
+
+# Spring Boot
+weatherpro-backend/HELP.md
+
+# STS
+weatherpro-backend/.apt_generated
+weatherpro-backend/.classpath
+weatherpro-backend/.factorypath
+weatherpro-backend/.project
+weatherpro-backend/.settings
+weatherpro-backend/.springBeans
+weatherpro-backend/.sts4-cache
+
+# NetBeans
+weatherpro-backend/nbproject/private/
+weatherpro-backend/nbbuild/
+weatherpro-backend/dist/
+weatherpro-backend/nbdist/
+weatherpro-backend/.nb-gradle/
+
+# CRITICAL: Configuration files with sensitive data
+# Create application.properties.example with placeholder values instead
+weatherpro-backend/src/main/resources/application.properties
+weatherpro-backend/src/main/resources/application-dev.properties
+weatherpro-backend/src/main/resources/application-prod.properties
+
+# Logs
+weatherpro-backend/logs/
+
+# ============================================
+# FRONTEND - React / Vite / Node
+# ============================================
+# Dependencies
+weatherpro-frontend/node_modules/
+
+# Build output
+weatherpro-frontend/dist/
+weatherpro-frontend/dist-ssr/
+weatherpro-frontend/*.local
+
+# Vite cache
+weatherpro-frontend/.vite
+
+# Testing
+weatherpro-frontend/coverage/
+
+# Logs
+weatherpro-frontend/logs
+weatherpro-frontend/npm-debug.log*
+weatherpro-frontend/yarn-debug.log*
+weatherpro-frontend/yarn-error.log*
+weatherpro-frontend/pnpm-debug.log*
+weatherpro-frontend/lerna-debug.log*
+
+# ============================================
+# PROJECT DOCUMENTATION & SCRIPTS
+# (Keep only README.md, ignore all other docs)
+# ============================================
+# Troubleshooting and setup files
+FIX_*.md
+*TROUBLESHOOTING*.md
+troubleshoot.sh
+test-*.sh
+diagnose-*.sh
+check-installation.sh
+quick-setup.sh
+test-direct-connection.sh
+
+# Documentation files (keep only README.md)
+API_TESTING_GUIDE.md
+DEPLOYMENT_GUIDE.md
+IMPLEMENTATION_PLAN.md
+PROJECT_SUMMARY.md
+QUICK_START.md
+SETUP_SUPABASE.md
+START_HERE.md
+UBUNTU_SETUP_GUIDE.md
+SUPABASE_CONNECTION_TROUBLESHOOTING.md
+
+# Database schema (optional - remove if needed for deployment)
+database-schema.sql
+
+# Assessment document
+*.pdf
