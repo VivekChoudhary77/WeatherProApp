@@ -111,6 +111,7 @@ diagnose-*.sh
 check-installation.sh
 quick-setup.sh
 test-direct-connection.sh
+deploy-to-render.sh
 
 # Documentation files (keep only README.md)
 API_TESTING_GUIDE.md
@@ -121,6 +122,8 @@ QUICK_START.md
 SETUP_SUPABASE.md
 START_HERE.md
 UBUNTU_SETUP_GUIDE.md
+RENDER_DEPLOYMENT.md
+VERCEL_DEPLOYMENT.md
 SUPABASE_CONNECTION_TROUBLESHOOTING.md
 
 # Database schema (optional - remove if needed for deployment)

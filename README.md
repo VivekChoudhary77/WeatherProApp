@@ -1,150 +1,204 @@
 # WeatherPro - Weather Application
 
-> Tech Assessment 2: AI/ML Engineer Intern Application
+Technical Assessment for AI Engineer Intern Position at Product Manager Accelerator
 
-A full-stack weather application that allows users to manage weather records with complete CRUD operations, location validation, API integrations, and data export capabilities.
+## Project Overview
 
-## 🎯 Features
+WeatherPro is a full-stack weather application that provides real-time weather information with complete CRUD functionality, location validation, and multiple API integrations. This project fulfills the requirements of Tech Assessment 1 and Tech Assessment 2 as outlined in the Product Manager Accelerator technical assessment documentation.
 
-### Mandatory Features (Tech Assessment 2 - Section 2.1)
-✅ **CREATE** - Add weather records with location and date range validation  
-✅ **READ** - View all weather records from the database  
-✅ **UPDATE** - Edit existing weather records with validation  
-✅ **DELETE** - Remove weather records from the database  
-✅ **Location Validation** - Fuzzy matching for location input  
-✅ **Date Range Validation** - Comprehensive date validation  
+## Features Implemented
 
-### Optional Features (Tech Assessment 2 - Sections 2.2 & 2.3)
-✅ **YouTube Integration** - View travel videos for selected locations  
-✅ **Google Maps Integration** - Map data and location visualization  
-✅ **Data Export** - Export data in JSON, CSV, XML, PDF, and Markdown formats  
+### Section 2.1 - CRUD Operations with Database Persistence
 
-### Bonus Features
-✅ **5-Day Weather Forecast** - Extended weather predictions  
-✅ **Current Location Detection** - GPS-based location input  
-✅ **Weather Icons & Visual Design** - Modern, responsive UI  
-✅ **Real-time Weather Data** - OpenWeatherMap API integration  
+**CREATE**
+- Users can enter a location and date range to retrieve weather data
+- All information is stored in a PostgreSQL database
+- Location validation ensures the location exists (supports fuzzy matching)
+- Date range validation prevents invalid date selections
 
-## 🛠️ Tech Stack
+**READ**
+- Users can view all previously requested weather information
+- Complete weather history is accessible to all users
+- Row level security was not implemented as per assessment guidelines
+
+**UPDATE**
+- Users can update existing weather records in the database
+- Location and date range validations are applied during updates
+- Only valid and coherent user input is accepted
+
+**DELETE**
+- Users can remove any weather record from the database
+- Confirmation modal prevents accidental deletions
+
+### Section 2.2 - API Integration (Optional Features Completed)
+
+**YouTube Integration**
+- Provides relevant travel videos for user-selected locations
+- Videos are dynamically fetched based on location context
+
+**Google Maps Integration**
+- Displays map data for user-selected locations
+- Handles both specific and approximate points of interest
+
+**OpenWeatherMap Integration**
+- Fetches real-time weather data including temperature, humidity, wind speed
+- Provides 5-day weather forecast for any location
+- Includes Air Quality Index (AQI) information
+
+### Section 2.3 - Data Export (Optional Features Completed)
+
+Users can export weather data from the database in multiple formats:
+- JSON (JavaScript Object Notation)
+- XML (Extensible Markup Language)
+- CSV (Comma Separated Values)
+- PDF (Portable Document Format)
+- Markdown (formatted text documentation)
+
+### Tech Assessment 1 - Core Weather App Features
+
+**Location Input Support**
+- ZIP Code and Postal Code (US, UK, Canadian, Indian PIN codes)
+- GPS Coordinates (decimal format with optional direction indicators)
+- City names (with fuzzy matching for typos)
+- Landmarks (famous locations and points of interest)
+
+**Current Weather Display**
+- Temperature, humidity, wind speed, and weather conditions
+- Atmospheric pressure and visibility
+- Sunrise and sunset times
+- Air Quality Index with categorization
+
+**5-Day Forecast**
+- Extended weather predictions with daily summaries
+- High and low temperatures for each day
+- Weather conditions and precipitation probability
+
+**Current Location Detection**
+- Uses browser Geolocation API to detect user location
+- Automatic weather fetch based on GPS coordinates
+
+**Visual Design**
+- Modern, responsive user interface built with Tailwind CSS
+- Weather icons and intuitive navigation
+- Clean and accessible design standards
+
+## Technology Stack
 
 ### Backend
 - **Framework**: Java Spring Boot 3.2.0
-- **Database**: Supabase (PostgreSQL)
+- **Database**: Supabase PostgreSQL
 - **Build Tool**: Maven
+- **ORM**: Spring Data JPA with Hibernate
 - **Key Libraries**:
-  - Spring Data JPA
-  - Spring WebFlux (for API calls)
-  - Apache Commons Text (fuzzy matching)
-  - OpenCSV, Jackson XML (data export)
+  - Spring WebFlux for external API calls
+  - Apache Commons Text for fuzzy location matching
+  - OpenCSV for CSV export
+  - Jackson XML for XML export
+  - iText7 for PDF generation
+  - Lombok for reducing boilerplate code
 
 ### Frontend
-- **Framework**: React 18 + TypeScript
+- **Framework**: React 18 with TypeScript
 - **Build Tool**: Vite
 - **Styling**: Tailwind CSS
-- **Key Libraries**:
-  - Axios (API calls)
-  - Lucide React (icons)
-  - Date-fns (date utilities)
+- **HTTP Client**: Axios
+- **UI Libraries**:
+  - Lucide React for icons
+  - React Hot Toast for notifications
+  - Date-fns for date manipulation
 
-### APIs Integrated
-- OpenWeatherMap API (weather data)
-- YouTube Data API (travel videos)
-- Google Maps API (maps and places)
+### External APIs Integrated
+- OpenWeatherMap API for weather data and geolocation
+- YouTube Data API v3 for location-based videos
+- Google Maps Geocoding API for landmark search
 
-## 📋 Prerequisites
+## Prerequisites
 
 Before running this application, ensure you have:
 
-- **Java JDK 17+** installed
-- **Node.js 18+** and npm installed
-- **Maven** installed
-- **Supabase** account (free tier works)
-- **API Keys** for:
-  - OpenWeatherMap (free at https://openweathermap.org/api)
-  - YouTube Data API (optional, from Google Cloud Console)
-  - Google Maps API (optional, from Google Cloud Console)
+- Java JDK 17 or higher installed
+- Node.js 18 or higher with npm
+- Maven build tool
+- Supabase account (free tier is sufficient)
+- API keys for:
+  - OpenWeatherMap API (free tier available)
+  - YouTube Data API v3 (optional, available through Google Cloud Console)
+  - Google Maps Geocoding API (optional, available through Google Cloud Console)
 
-## 🚀 Setup Instructions
+## Installation and Setup
 
 ### Step 1: Clone the Repository
 
 ```bash
-cd /path/to/your/projects
-git clone <your-repo-url>
+git clone https://github.com/VivekChoudhary77/WeatherProApp.git
 cd WeatherPro
 ```
 
-### Step 2: Database Setup (Supabase)
+### Step 2: Database Setup
 
-1. Create a free account at [Supabase](https://supabase.com)
-2. Create a new project
-3. Go to SQL Editor and run the schema:
+1. Create a free account at Supabase (https://supabase.com)
+2. Create a new project with a name of your choice
+3. Navigate to the SQL Editor in the Supabase dashboard
+4. Execute the SQL schema provided in `database-schema.sql` to create the required tables:
+   - `locations` table for storing location information
+   - `weather_records` table for storing weather data
 
-```sql
--- Copy and paste the contents of database-schema.sql
-```
+5. Obtain your database credentials:
+   - Go to Project Settings, then Database section
+   - Under Connection String, select the "Connection Pooling" tab
+   - Copy the connection string in Session or Transaction mode
+   - Note your database password
 
-4. Get your database credentials:
-   - Go to Settings → Database
-   - Copy the connection string (URI format)
-   - Note down your password
+### Step 3: Backend Configuration and Startup
 
-### Step 3: Backend Setup
-
-1. Navigate to backend directory:
+1. Navigate to the backend directory:
 
 ```bash
 cd weatherpro-backend
 ```
 
-2. Create `application-dev.properties` in `src/main/resources/`:
+2. Update the configuration file `src/main/resources/application.properties` with your credentials:
 
 ```properties
 # Database Configuration
-spring.datasource.url=jdbc:postgresql://db.xxxxx.supabase.co:5432/postgres
-spring.datasource.username=postgres
-spring.datasource.password=your-supabase-password
+spring.datasource.url=jdbc:postgresql://your-supabase-host:5432/postgres?user=postgres.xxxxx&password=YourPassword&sslmode=require
 
 # API Keys
 openweather.api.key=your-openweathermap-api-key
 youtube.api.key=your-youtube-api-key
 google.maps.api.key=your-google-maps-api-key
 
-# CORS
+# CORS Configuration
 cors.allowed-origins=http://localhost:5173
 ```
 
-3. Build and run the backend:
+3. Build and run the backend application:
 
 ```bash
-# Clean and build
 mvn clean install
-
-# Run the application
 mvn spring-boot:run
 ```
 
-The backend should start on http://localhost:8080
+The backend server will start on http://localhost:8080 with the API accessible at http://localhost:8080/api
 
-### Step 4: Frontend Setup
+### Step 4: Frontend Configuration and Startup
 
-1. Navigate to frontend directory:
+1. Navigate to the frontend directory:
 
 ```bash
 cd ../weatherpro-frontend
 ```
 
-2. Install dependencies:
+2. Install required dependencies:
 
 ```bash
 npm install
 ```
 
-3. Create `.env` file:
+3. Create a `.env` file in the frontend root directory:
 
 ```env
 VITE_API_BASE_URL=http://localhost:8080/api
-VITE_GOOGLE_MAPS_KEY=your-google-maps-api-key
 ```
 
 4. Start the development server:
@@ -153,253 +207,446 @@ VITE_GOOGLE_MAPS_KEY=your-google-maps-api-key
 npm run dev
 ```
 
-The frontend should start on http://localhost:5173
+The frontend application will start on http://localhost:5173
 
 ### Step 5: Access the Application
 
-Open your browser and navigate to:
-```
-http://localhost:5173
-```
+Open your web browser and navigate to http://localhost:5173 to access the WeatherPro application.
 
-## 📱 How to Use
+## Application Usage Guide
 
 ### Creating Weather Records
-1. Enter a location (city name, ZIP code, coordinates, or landmark)
-2. Select start and end dates
-3. Click "Search Weather"
-4. The app will validate the location and fetch weather data
+
+1. Enter a location in the search field. Supported formats include:
+   - City name (e.g., "New York", "London")
+   - ZIP or postal code (e.g., "10001", "110001")
+   - GPS coordinates (e.g., "40.7128,-74.0060")
+   - Landmarks (e.g., "Eiffel Tower")
+
+2. Select the start date and end date for the weather data range
+
+3. Click the "Search Weather" button
+
+4. The application will validate the location and date range, then fetch and store the weather data
 
 ### Viewing Weather History
-- All created records appear in the Weather History table
-- Click the info button (ℹ️) to see detailed information
+
+All created weather records are displayed in the Weather History table. Each record shows:
+- Location name and coordinates
+- Date range
+- Weather conditions and temperature
+- Humidity, wind speed, and atmospheric pressure
+- Air Quality Index (AQI) with category
 
 ### Updating Records
-1. Click the Edit (✏️) icon on any record
-2. Modify the location or date range
-3. Click Save (✓) to update
+
+1. Locate the record you want to update in the Weather History table
+2. Click the Edit icon on that record
+3. Modify the location or date range as needed
+4. Click the Save icon to update the record
+
+The application will re-validate the data before updating.
 
 ### Deleting Records
-1. Click the Delete (🗑️) icon on any record
-2. Click again to confirm deletion
+
+1. Locate the record you want to delete in the Weather History table
+2. Click the Delete icon
+3. Confirm the deletion in the modal dialog that appears
 
 ### Exporting Data
-1. Scroll to the Export Data section
-2. Click on your preferred format (JSON, CSV, XML, PDF, or Markdown)
-3. The file will download automatically
 
-### Viewing Forecast
-- Select any location to see the 5-day forecast
-- View temperature highs/lows, humidity, wind speed, and precipitation chance
+1. Navigate to the Export Data section
+2. Select your preferred export format:
+   - JSON for structured data interchange
+   - CSV for spreadsheet applications
+   - XML for data exchange
+   - PDF for printable reports
+   - Markdown for documentation
+
+3. The file will be downloaded automatically to your browser's download folder
+
+### Viewing Weather Forecast
+
+After searching for a location, the application automatically displays:
+- 5-day weather forecast
+- Daily temperature highs and lows
+- Weather conditions for each day
+- Humidity, wind speed, and precipitation probability
 
 ### Watching Travel Videos
-- YouTube videos automatically load for selected locations
-- Click on any video thumbnail to watch
 
-## 🔧 Configuration
+The application fetches and displays relevant YouTube videos for selected locations. Click on any video thumbnail to watch it on YouTube.
+
+## Configuration
 
 ### Backend Configuration
-Edit `weatherpro-backend/src/main/resources/application.properties` to configure:
-- Server port (default: 8080)
-- Database connection
-- API keys
-- CORS origins
+
+The backend configuration is managed through `weatherpro-backend/src/main/resources/application.properties`. Key configurations include:
+
+- Server port (default is 8080)
+- Database connection parameters (URL, username, password)
+- HikariCP connection pool settings
+- External API keys (OpenWeatherMap, YouTube, Google Maps)
+- CORS allowed origins
+- JPA and Hibernate settings
 - Logging levels
 
 ### Frontend Configuration
-Edit `weatherpro-frontend/.env` to configure:
-- API base URL
-- Google Maps API key
 
-## 📊 API Endpoints
+The frontend configuration is managed through `weatherpro-frontend/.env`. Configuration options include:
+
+- `VITE_API_BASE_URL`: Backend API endpoint URL
+
+## API Documentation
 
 ### Weather Operations
-```
-POST   /api/weather             - Create weather record
-GET    /api/weather             - Get all records
-GET    /api/weather/{id}        - Get record by ID
-PUT    /api/weather/{id}        - Update record
-DELETE /api/weather/{id}        - Delete record
-GET    /api/weather/search      - Search by location
-GET    /api/weather/current     - Get current weather
-GET    /api/weather/forecast    - Get 5-day forecast
-```
+
+**Create Weather Record**
+- Endpoint: `POST /api/weather`
+- Creates a new weather record with location and date range validation
+
+**Get All Records**
+- Endpoint: `GET /api/weather`
+- Retrieves all weather records from the database
+
+**Get Record by ID**
+- Endpoint: `GET /api/weather/{id}`
+- Retrieves a specific weather record by its UUID
+
+**Update Record**
+- Endpoint: `PUT /api/weather/{id}`
+- Updates an existing weather record with validation
+
+**Delete Record**
+- Endpoint: `DELETE /api/weather/{id}`
+- Removes a weather record from the database
+
+**Search by Location**
+- Endpoint: `GET /api/weather/search?location={location}`
+- Searches for weather records by location name
+
+**Get Current Weather**
+- Endpoint: `GET /api/weather/current?location={location}`
+- Fetches current weather data for a location
+
+**Get Forecast**
+- Endpoint: `GET /api/weather/forecast?location={location}`
+- Retrieves 5-day weather forecast for a location
 
 ### Integration APIs
-```
-GET    /api/integration/youtube    - Get YouTube videos
-GET    /api/integration/maps       - Get map information
-```
+
+**YouTube Videos**
+- Endpoint: `GET /api/integration/youtube?location={location}`
+- Fetches relevant YouTube videos for a location
+
+**Maps Information**
+- Endpoint: `GET /api/integration/maps?location={location}`
+- Retrieves Google Maps data for a location
 
 ### Export APIs
-```
-GET    /api/export/json        - Export to JSON
-GET    /api/export/csv         - Export to CSV
-GET    /api/export/xml         - Export to XML
-GET    /api/export/markdown    - Export to Markdown
-GET    /api/export/pdf         - Export to PDF
-```
 
-## 🧪 Testing
+**Export to JSON**
+- Endpoint: `GET /api/export/json`
+- Downloads all weather data in JSON format
+
+**Export to CSV**
+- Endpoint: `GET /api/export/csv`
+- Downloads all weather data in CSV format
+
+**Export to XML**
+- Endpoint: `GET /api/export/xml`
+- Downloads all weather data in XML format
+
+**Export to Markdown**
+- Endpoint: `GET /api/export/markdown`
+- Downloads all weather data in Markdown format
+
+**Export to PDF**
+- Endpoint: `GET /api/export/pdf`
+- Downloads all weather data in PDF format
+
+## Testing
 
 ### Backend Tests
+
+To run the backend test suite:
+
 ```bash
 cd weatherpro-backend
 mvn test
 ```
 
 ### Frontend Tests
+
+To run the frontend test suite:
+
 ```bash
 cd weatherpro-frontend
 npm run test
 ```
 
-## 📦 Building for Production
+## Building for Production
 
-### Backend
+### Backend Production Build
+
+To build the backend for production deployment:
+
 ```bash
 cd weatherpro-backend
 mvn clean package
+```
+
+This creates a JAR file at `target/weatherpro-backend-1.0.0.jar` which can be deployed to any Java application server.
+
+To run the production JAR locally:
+
+```bash
 java -jar target/weatherpro-backend-1.0.0.jar
 ```
 
-### Frontend
+### Frontend Production Build
+
+To build the frontend for production deployment:
+
 ```bash
 cd weatherpro-frontend
 npm run build
-# Output will be in dist/ folder
-# Deploy to Vercel, Netlify, or any static hosting
 ```
 
-## 🌐 Deployment
+The production-ready files will be generated in the `dist` folder, which can be deployed to static hosting services like Vercel, Netlify, or AWS S3.
 
-### Backend Deployment Options
-- **Railway** (recommended): Easy Java deployment
-- **Render**: Free tier available
-- **Heroku**: Classic choice
-- **AWS EC2**: Full control
+## Deployment
 
-### Frontend Deployment Options
-- **Vercel** (recommended): Automatic deployments from Git
-- **Netlify**: Great for static sites
-- **GitHub Pages**: Free hosting
-- **AWS S3 + CloudFront**: Scalable solution
+### Backend Deployment
 
-### Database
-- **Supabase** (already cloud-hosted)
-- Ensure connection strings are updated for production
+The backend can be deployed to various platforms:
 
-## 🔒 Environment Variables
+**Render.com** (Recommended)
+- Supports Docker deployment with free tier
+- Automatic builds from Git repository
+- Simple environment variable management
+
+**Railway**
+- Easy Java application deployment
+- Built-in PostgreSQL database support
+
+**Heroku**
+- Traditional Java deployment platform
+- Simple scaling options
+
+**AWS EC2**
+- Full server control and customization
+- Requires manual server configuration
+
+For detailed backend deployment instructions, refer to `RENDER_DEPLOYMENT.md`.
+
+### Frontend Deployment
+
+The frontend can be deployed to static hosting platforms:
+
+**Vercel** (Recommended)
+- Automatic deployments from Git
+- Built-in CI/CD pipeline
+- Excellent performance and CDN
+
+
+### Database Hosting
+
+This application uses Supabase for database hosting, which is already cloud-hosted. When deploying to production:
+
+- Ensure the connection string in your backend configuration points to your Supabase instance
+- Update CORS settings to allow requests from your deployed frontend URL
+- Use environment variables for sensitive database credentials
+
+## Environment Variables
 
 ### Backend Environment Variables
-```bash
-SUPABASE_DB_URL=jdbc:postgresql://...
-SUPABASE_DB_USERNAME=postgres
-SUPABASE_DB_PASSWORD=your-password
-OPENWEATHER_API_KEY=your-key
-YOUTUBE_API_KEY=your-key
-GOOGLE_MAPS_API_KEY=your-key
+
+For production deployment, configure the following environment variables:
+
+```
+SPRING_DATASOURCE_URL=jdbc:postgresql://your-host:5432/postgres?user=postgres.xxxxx&password=YourPassword&sslmode=require
+OPENWEATHER_API_KEY=your-openweathermap-api-key
+YOUTUBE_API_KEY=your-youtube-api-key
+GOOGLE_MAPS_API_KEY=your-google-maps-api-key
+CORS_ORIGINS=https://your-frontend-domain.com
+SPRING_DATASOURCE_HIKARI_MAXIMUM_POOL_SIZE=3
+SPRING_DATASOURCE_HIKARI_CONNECTION_TIMEOUT=60000
+SPRING_DATASOURCE_HIKARI_MINIMUM_IDLE=1
 ```
 
 ### Frontend Environment Variables
-```bash
-VITE_API_BASE_URL=https://your-api-domain.com/api
-VITE_GOOGLE_MAPS_KEY=your-key
+
+For production deployment, configure the following environment variables:
+
+```
+VITE_API_BASE_URL=https://your-backend-domain.com/api
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
-### Backend won't start
-- Verify Java 17+ is installed: `java -version`
-- Check database connection in application.properties
-- Ensure Supabase database is accessible
+### Backend Application Won't Start
 
-### Frontend won't start
-- Verify Node.js 18+ is installed: `node --version`
-- Delete `node_modules` and run `npm install` again
-- Check `.env` file exists with correct API URL
+- Verify Java JDK 17 or higher is installed by running `java -version`
+- Check that the database connection URL in `application.properties` is correct
+- Ensure your Supabase project is active and accessible
+- Verify Maven is installed correctly by running `mvn -version`
+- Check that all required API keys are configured
+
+### Frontend Application Won't Start
+
+- Verify Node.js 18 or higher is installed by running `node --version`
+- Delete the `node_modules` folder and run `npm install` again
+- Ensure the `.env` file exists with the correct `VITE_API_BASE_URL`
+- Clear the npm cache with `npm cache clean --force` if issues persist
 
 ### CORS Errors
-- Verify backend CORS configuration includes frontend URL
-- Check `cors.allowed-origins` in application.properties
+
+- Verify that the backend CORS configuration includes your frontend URL
+- Check the `cors.allowed-origins` property in `application.properties`
+- Ensure both HTTP and HTTPS protocols are specified if needed
+- For production, update CORS to allow your deployed frontend domain
+
+### Database Connection Issues
+
+- Verify Supabase project is active (not paused)
+- Check that SSL mode is enabled in the connection string (`sslmode=require`)
+- Ensure the connection pool size is appropriate for your tier (Supabase free tier has limits)
+- Verify database credentials are correct and URL-encoded if they contain special characters
 
 ### API Key Issues
-- Verify all API keys are valid and have necessary permissions
-- OpenWeatherMap keys may take a few hours to activate
 
-## 📝 Project Structure
+- Verify all API keys are valid and active
+- Check that API keys have the necessary permissions enabled
+- OpenWeatherMap API keys may take a few hours to activate after creation
+- Ensure API quotas have not been exceeded
+
+For more detailed troubleshooting, refer to the additional documentation files in the project repository.
+
+## Project Structure
 
 ```
 WeatherPro/
-├── weatherpro-backend/          # Spring Boot Backend
+├── weatherpro-backend/              # Spring Boot Backend Application
 │   ├── src/main/java/com/weatherpro/
-│   │   ├── config/              # Configuration classes
-│   │   ├── controller/          # REST Controllers
-│   │   ├── service/             # Business logic
-│   │   ├── repository/          # Data access
-│   │   ├── model/               # Entity classes
-│   │   ├── dto/                 # Data transfer objects
-│   │   └── exception/           # Exception handlers
+│   │   ├── config/                  # Configuration classes (CORS, WebClient)
+│   │   ├── controller/              # REST API Controllers
+│   │   ├── service/                 # Business logic layer
+│   │   ├── repository/              # JPA data access layer
+│   │   ├── model/                   # JPA entity classes
+│   │   ├── dto/                     # Data Transfer Objects
+│   │   └── exception/               # Exception handling
 │   ├── src/main/resources/
-│   │   └── application.properties
-│   └── pom.xml                  # Maven dependencies
-├── weatherpro-frontend/         # React Frontend
+│   │   ├── application.properties   # Main configuration file
+│   │   └── application-dev.properties  # Development configuration
+│   ├── pom.xml                      # Maven dependencies and build config
+│   ├── Dockerfile                   # Docker configuration for deployment
+│   └── .dockerignore                # Docker build exclusions
+│
+├── weatherpro-frontend/             # React Frontend Application
 │   ├── src/
-│   │   ├── components/          # React components
-│   │   ├── services/            # API services
-│   │   ├── types/               # TypeScript types
-│   │   ├── utils/               # Utility functions
-│   │   ├── App.tsx              # Main component
-│   │   └── main.tsx             # Entry point
-│   ├── package.json             # npm dependencies
-│   └── vite.config.ts           # Vite configuration
-├── database-schema.sql          # Database schema
-├── IMPLEMENTATION_PLAN.md       # Detailed implementation plan
-└── README.md                    # This file
+│   │   ├── components/              # Reusable React components
+│   │   ├── services/                # API integration services
+│   │   ├── types/                   # TypeScript type definitions
+│   │   ├── utils/                   # Helper and utility functions
+│   │   ├── App.tsx                  # Main application component
+│   │   ├── main.tsx                 # Application entry point
+│   │   └── index.css                # Global styles
+│   ├── package.json                 # npm dependencies
+│   ├── vite.config.ts               # Vite build configuration
+│   ├── tailwind.config.js           # Tailwind CSS configuration
+│   ├── vercel.json                  # Vercel deployment configuration
+│   └── .env                         # Environment variables (local)
+│
+├── database-schema.sql              # PostgreSQL database schema
+├── deploy-to-render.sh              # Automated deployment script
+├── README.md                        # This documentation file
+├── RENDER_DEPLOYMENT.md             # Backend deployment guide
+├── VERCEL_DEPLOYMENT.md             # Frontend deployment guide
+└── .gitignore                       # Git ignore configuration
 ```
 
-## ✨ Key Features Explained
+## Key Features Explained
 
 ### Location Validation with Fuzzy Matching
-The app uses Levenshtein distance algorithm to handle typos and variations in location names. For example:
-- "New Yrok" → "New York"
-- "Parris" → "Paris"
+
+The application implements fuzzy matching using the Levenshtein distance algorithm to handle typos and variations in location names. This ensures that users can successfully search even with minor spelling errors. Examples:
+
+- "New Yrok" is corrected to "New York"
+- "Parris" is corrected to "Paris"
+- "Londn" is corrected to "London"
+
+The fuzzy matching threshold is configured to balance between flexibility and accuracy.
 
 ### Date Range Validation
-- Start date must be before end date
-- Cannot be more than 1 year in the past
-- Cannot be more than 16 days in the future (OpenWeatherMap limit)
 
-### Multiple Location Formats Supported
-- **City names**: "New York", "London", "Tokyo"
-- **ZIP codes**: "10001", "SW1A 1AA"
-- **Coordinates**: "40.7128,-74.0060" or "40.7128 N, 74.0060 W"
-- **Landmarks**: "Eiffel Tower", "Statue of Liberty"
+The application enforces the following date validation rules:
 
-## 👨‍💻 Developer
+- Start date must be before or equal to the end date
+- Date ranges cannot extend more than 1 year into the past
+- Future dates are limited to 16 days ahead (due to OpenWeatherMap API limitations)
+- Invalid date selections are prevented with clear error messages
 
-**Vivek Choudhary**  
-Tech Assessment 2 - AI/ML Engineer Intern  
-Product Manager Accelerator
+### Supported Location Input Formats
 
-## 🔗 Links
+The application accepts multiple location input formats to provide flexibility:
 
-- [Product Manager Accelerator LinkedIn](https://www.linkedin.com/company/productmanageraccelerator/)
-- [OpenWeatherMap API Documentation](https://openweathermap.org/api)
-- [Supabase Documentation](https://supabase.com/docs)
+- **City names**: New York, London, Tokyo, Mumbai
+- **ZIP and Postal codes**: 10001 (US), 110001 (India), SW1A 1AA (UK)
+- **GPS Coordinates**: 40.7128,-74.0060 or 40.7128° N, 74.0060° W
+- **Landmarks**: Eiffel Tower, Statue of Liberty, Taj Mahal
 
-## 📄 License
+### Duplicate Record Prevention
 
-This project is developed as part of the Product Manager Accelerator technical assessment.
+The application prevents duplicate weather records for the same location and overlapping date ranges. When attempting to create a duplicate record, the user receives a clear error message explaining the conflict.
 
-## 🙏 Acknowledgments
+### Air Quality Index Integration
 
-- Product Manager Accelerator for the opportunity
-- OpenWeatherMap for weather data API
-- Supabase for database hosting
-- All open-source libraries used in this project
+Weather records include Air Quality Index (AQI) data from OpenWeatherMap, categorized as:
+- Good (AQI 1)
+- Fair (AQI 2)
+- Moderate (AQI 3)
+- Poor (AQI 4)
+- Very Poor (AQI 5)
 
----
+## About the Developer
 
-**Built with ❤️ for Product Manager Accelerator**
+**Vivek Choudhary**
+
+This project was developed as part of the technical assessment for the AI Engineer Intern position at Product Manager Accelerator. The implementation demonstrates full-stack development capabilities, API integration, database management, and deployment to production environments.
+
+## About Product Manager Accelerator
+
+Product Manager Accelerator is a premier accelerator program designed to support product managers and professionals in accelerating their careers and product development skills. For more information, visit their LinkedIn page at https://www.linkedin.com/company/productmanageraccelerator/
+
+## Live Deployment
+
+- **Frontend**: https://weather-proapp.vercel.app
+- **Backend API**: https://weatherpro-backend-latest.onrender.com/api
+
+## References and Documentation
+
+- OpenWeatherMap API Documentation: https://openweathermap.org/api
+- Supabase Documentation: https://supabase.com/docs
+- Spring Boot Documentation: https://spring.io/projects/spring-boot
+- React Documentation: https://react.dev
+
+## License
+
+This project was developed as part of the Product Manager Accelerator technical assessment and is intended for evaluation purposes.
+
+## Acknowledgments
+
+This project was made possible through the use of several open-source technologies and free-tier services:
+
+- Product Manager Accelerator for providing the opportunity and assessment framework
+- OpenWeatherMap for providing the weather data API
+- Supabase for PostgreSQL database hosting
+- YouTube Data API for video integration
+- Google Maps API for geolocation services
+- All open-source libraries and frameworks used in this project
+
+## Contact
+
+For questions or feedback regarding this project, please reach out through the Product Manager Accelerator program channels.
 
