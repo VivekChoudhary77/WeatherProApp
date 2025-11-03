@@ -88,7 +88,7 @@ export const WeatherSearch: React.FC<WeatherSearchProps> = ({ onSearchSuccess })
             location: `${latitude.toFixed(6)}, ${longitude.toFixed(6)}`,
           });
         },
-        (error) => {
+        () => {
           const errorMsg = 'Failed to get current location. Please enable location access.';
           toast.error(errorMsg);
           setError(errorMsg);
