@@ -208,22 +208,13 @@ public class LocationValidationService {
                                 (state != null ? ", " + state : "") + 
                                 ", " + country;
 
-                // Determine if it's likely a landmark based on the match quality
-                String locationType = "city";
-                if (bestDistance <= 3 && !location.toLowerCase().contains("city")) {
-                    // If it's a very close match and doesn't contain "city", might be a landmark
-                    locationType = locationName.equals(location) || 
-                                  locationName.toLowerCase().contains(location.toLowerCase()) ? 
-                                  "landmark" : "city";
-                }
-
                 return LocationInfo.builder()
                         .locationName(fullName)
                         .latitude(new BigDecimal(bestMatch.get("lat").asText()))
                         .longitude(new BigDecimal(bestMatch.get("lon").asText()))
                         .country(country)
                         .state(state)
-                        .locationType(locationType)
+                        .locationType("city")
                         .originalInput(location)
                         .validated(true)
                         .build();

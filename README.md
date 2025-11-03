@@ -378,7 +378,7 @@ The app uses Levenshtein distance algorithm to handle typos and variations in lo
 
 ## 👨‍💻 Developer
 
-**Your Name**  
+**Vivek Choudhary**  
 Tech Assessment 2 - AI/ML Engineer Intern  
 Product Manager Accelerator
 

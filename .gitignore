@@ -23,7 +23,13 @@
 .env
 .env.local
 .env.production
+.env.production.local
+.env.development
+.env.development.local
 .env.*.local
+**/.env
+**/.env.local
+**/.env.production
 
 # ============================================
 # BACKEND - Spring Boot / Maven
